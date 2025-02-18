@@ -1,8 +1,9 @@
-![heart](https://github.com/user-attachments/assets/f0c91918-60bf-4130-a0e5-c473b6071378)
+# IMDM290 2025 Spring
 
-IMDM 290 
+### A2 - Heart
 
-2025 Spring
+![heart](https://github.com/user-attachments/assets/0f081da3-0269-4cde-8909-933f6556bab5)
 
-Course Material 
-![Untitled video - Made with Clipchamp (8)](https://github.com/user-attachments/assets/f862236a-a226-4e8f-8bfd-47c7161032da)
+### A3 - MV
+
+
