@@ -9,6 +9,7 @@ using UnityEngine;
 public class Guess : MonoBehaviour
 {
     GameObject[] spheres;
+    GameObject backdrop;
     static int numSphere = 200; 
     float time = 0f;
     Vector3[] initPos;
@@ -19,6 +20,15 @@ public class Guess : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        backdrop = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        backdrop.transform.localScale += new Vector3(25,15,0);
+        
+        Renderer backdropRenderer = backdrop.GetComponent<Renderer>();
+        Color backdropColor = Color.HSVToRGB(0f, 0f, 0f); // Full saturation and brightness
+        backdropRenderer.material.color = backdropColor;
+        
+
         // Assign proper types and sizes to the variables.
         spheres = new GameObject[numSphere];
         initPos = new Vector3[numSphere]; // Start positions
@@ -58,11 +68,14 @@ public class Guess : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        time += Time.deltaTime;
         // ***Here, we use audio Amplitude, where else do you want to use?
         // Measure Time 
         // Time.deltaTime = The interval in seconds from the last frame to the current one
         // but what if time flows according to the music's amplitude?
-        time += Time.deltaTime * AudioSpectrum.audioAmp; 
+
+        // time += Time.deltaTime * AudioSpectrum.audioAmp; 
         // what to update over time?
         for (int i =0; i < numSphere; i++){
             // Lerp : Linearly interpolates between two points.
@@ -81,9 +94,15 @@ public class Guess : MonoBehaviour
             
             // Color Update over time
             Renderer sphereRenderer = spheres[i].GetComponent<Renderer>();
-            float hue = ((float)i / numSphere * 0.42f) + 0.18f; // Hue cycles through 0 to 1
-            Color color = Color.HSVToRGB(Mathf.Abs(hue * Mathf.Cos(time)), Mathf.Cos(AudioSpectrum.audioAmp / 10f), 2f + Mathf.Cos(time)); // Full saturation and brightness
-            sphereRenderer.material.color = color;
+            // float hue = ((float)i / numSphere * 0.42f) + 0.18f; // Hue cycles through 0 to 1
+            // Color color = Color.HSVToRGB(Mathf.Abs(hue * Mathf.Cos(time)), Mathf.Cos(AudioSpectrum.audioAmp / 10f), 2f + Mathf.Cos(time)); // Full saturation and brightness
+            // sphereRenderer.material.color = color;
+
+            Renderer backdropRenderer = backdrop.GetComponent<Renderer>();
+            Color backdropColor = Color.HSVToRGB(.3f, 1f, 7f * AudioSpectrum.audioAmp); // Full saturation and brightness
+            backdropRenderer.material.color = backdropColor;
+
+            Debug.Log("AudioSpectrum.audioAmp: " + AudioSpectrum.audioAmp);
         }
     }
 }

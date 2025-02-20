@@ -41,7 +41,7 @@ public class Lerp : MonoBehaviour
         }
         // Let there be spheres..
         for (int i =0; i < numSphere; i++){
-            float r = 10f; // radius of the circle
+            // float r = 10f; // radius of the circle
             // Draw primitive elements:
             // https://docs.unity3d.com/6000.0/Documentation/ScriptReference/GameObject.CreatePrimitive.html
             spheres[i] = GameObject.CreatePrimitive(PrimitiveType.Sphere); 

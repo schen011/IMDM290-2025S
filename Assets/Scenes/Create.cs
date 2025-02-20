@@ -10,7 +10,7 @@ public class Create : MonoBehaviour
 {
     GameObject[] spheres;
     static int numSphere = 100; 
-    float time = 0f;
+    // float time = 0f;
     Vector3[] initPos;
     // Start is called before the first frame update
     void Start()

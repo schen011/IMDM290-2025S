@@ -41,7 +41,7 @@ public class Lerp2 : MonoBehaviour
         }
         // Let there be spheres..
         for (int i =0; i < numSphere; i++){
-            float r = 10f; // radius of the circle
+            // float r = 10f; // radius of the circle
             // Position
             initPos[i] = startPosition[i];
             // Color
