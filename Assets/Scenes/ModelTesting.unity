@@ -428,7 +428,7 @@ MonoBehaviour:
   sampleDataLength: 1024
   clipLoudness: 0
   tinker: {fileID: 610779468}
-  sizeFactor: 2
+  sizeFactor: 3
   minSize: 0
   maxSize: 500
 --- !u!4 &610779473 stripped
