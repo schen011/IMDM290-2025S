@@ -17,12 +17,16 @@ public class Guess : MonoBehaviour
     float lerpFraction; // Lerp point between 0~1
     float t;
 
+    float Oscillate(float time, float lower, float upper){
+            return Mathf.Sin(time) * upper + lower;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         
         backdrop = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        backdrop.transform.localScale += new Vector3(25,15,0);
+        backdrop.transform.localScale += new Vector3(25f,-0.99f,25f);
         
         Renderer backdropRenderer = backdrop.GetComponent<Renderer>();
         Color backdropColor = Color.HSVToRGB(0f, 0f, 0f); // Full saturation and brightness
@@ -59,7 +63,9 @@ public class Guess : MonoBehaviour
             // Get the renderer of the spheres and assign colors.
             Renderer sphereRenderer = spheres[i].GetComponent<Renderer>();
             // HSV color space: https://en.wikipedia.org/wiki/HSL_and_HSV
-            float hue = ((float)i / numSphere * 0.42f) + 0.18f; // Hue cycles through 0 to 1
+            float hue = Oscillate(((float)i / numSphere),0.18f,0.42f); // Hue cycles through 0 to 1
+
+            // float hue = ((float)i / numSphere * 0.42f) + 0.18f; // Hue cycles through 0 to 1
             Color color = Color.HSVToRGB(hue, 1f, 1f); // Full saturation and brightness
             sphereRenderer.material.color = color;
         }
@@ -99,10 +105,21 @@ public class Guess : MonoBehaviour
             // sphereRenderer.material.color = color;
 
             Renderer backdropRenderer = backdrop.GetComponent<Renderer>();
-            Color backdropColor = Color.HSVToRGB(.3f, 1f, 7f * AudioSpectrum.audioAmp); // Full saturation and brightness
+            float hue = .3f;
+
+            if (time >= 4f){
+                hue = .6f;
+            } else {
+                hue = .3f;
+            }
+
+            Color backdropColor = Color.HSVToRGB(hue, 1f, 6f * AudioSpectrum.audioAmp); // Full saturation and brightness
             backdropRenderer.material.color = backdropColor;
 
+            
             Debug.Log("AudioSpectrum.audioAmp: " + AudioSpectrum.audioAmp);
         }
+
+        
     }
 }

@@ -27,8 +27,16 @@ public class Background : MonoBehaviour
     {
         time += Time.deltaTime;
 
+        float hue = .3f;
+
+        if (time > 59.3f && time < 89f){
+            hue = .6f + (0.07f*Mathf.Sin(AudioSpectrum.audioAmp));
+        } else {
+            hue = .31f;
+        }
+
         Renderer backdropRenderer = backdrop.GetComponent<Renderer>();
-        Color backdropColor = Color.HSVToRGB(.3f, 1f, 7f * AudioSpectrum.audioAmp);
+        Color backdropColor = Color.HSVToRGB(hue, 1f, 4f * AudioSpectrum.audioAmp);
         backdropRenderer.material.color = backdropColor;
 
         Debug.Log("AudioSpectrum.audioAmp: " + AudioSpectrum.audioAmp);
