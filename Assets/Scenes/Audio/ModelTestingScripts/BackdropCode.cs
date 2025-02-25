@@ -33,16 +33,20 @@ public class Background : MonoBehaviour
             hue = .6f + (0.06f*Mathf.Sin(AudioSpectrum.audioAmp)); // billie part
         } else if (time > 16f && time < 16.4f){
             hue = .9f;  // pretty in pink
-        } else if (time > 96f && time < 125f){
-
+        } else if (time > 96f && time < 111f){
+            hue = (Mathf.Sin(AudioSpectrum.audioAmp) + Mathf.Sin(time)) / 2f;
+        } else if (time > 111f && time < 125f){
+            hue = .31f; // guess guess
         } else {
             hue = .31f;
         }
 
         float value;
 
-        if (time > 96f && time < 125f){
-            value = AudioSpectrum.audioAmp + Mathf.Sin(AudioSpectrum.audioAmp);
+        if (time > 96f && time < 111f){
+            value = 4f * (Mathf.Sin(AudioSpectrum.audioAmp) - 0.5f);
+        } else if (time > 111f && time < 125f){
+            value = 6f * (Mathf.Sin(AudioSpectrum.audioAmp));
         } else {
             value = 4f * AudioSpectrum.audioAmp;
         }
