@@ -30,7 +30,9 @@ public class Background : MonoBehaviour
         float hue = .3f;
 
         if (time > 59.3f && time < 89f){
-            hue = .6f + (0.07f*Mathf.Sin(AudioSpectrum.audioAmp));
+            hue = .6f + (0.06f*Mathf.Sin(AudioSpectrum.audioAmp)); // billie part
+        } else if (time > 16f && time < 16.4f){
+            hue = .9f;
         } else {
             hue = .31f;
         }
@@ -40,5 +42,6 @@ public class Background : MonoBehaviour
         backdropRenderer.material.color = backdropColor;
 
         Debug.Log("AudioSpectrum.audioAmp: " + AudioSpectrum.audioAmp);
+        Debug.Log("Sec:" + time);
     }
 }
